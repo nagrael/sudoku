@@ -1,7 +1,6 @@
+package model
 
 
-// Sudoku Generator For Scala
-//
 
 abstract class Difficulty { def revealCount: Int }
 case class Easy() extends Difficulty { val revealCount = 40 }
