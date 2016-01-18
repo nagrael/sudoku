@@ -2,14 +2,19 @@
   * Created by Jan on 2016-01-17.
   */
 object SudokuApp extends App {
-  val puzzles = new SudokuPuzzle(new Hard)
-  println(puzzles.puzzleToString(puzzles.puzzle))
-  println("")
-  println(puzzles.puzzleToString(puzzles.presented))
-  println("")
-  println(puzzles.generate(0, puzzles.possibleNumbers(0, puzzles.presented),puzzles.presented))
-  println("")
-  println(puzzles.puzzleToString(puzzles.presented))
+  var b = true
+  for(i<-0 to 100) {
+    var puzzles = new SudokuPuzzle(new Medium)
+    println("")
+    println(puzzles.puzzleToString(puzzles.presented))
 
+    (puzzles.solve(0, puzzles.possibleNumbers(0, puzzles.presented), puzzles.presented))
+
+    (puzzles.puzzleToString(puzzles.presented))
+
+    b = b && (puzzles.equals(puzzles.presented, puzzles.puzzle))
+  }
+  println("")
+  println(b)
 }
 
