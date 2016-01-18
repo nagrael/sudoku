@@ -1,10 +1,12 @@
+package app
+
 /**
  * Created by Krystian on 2016-01-17.
  */
 
+import controller.GameController
 import model.GameModel
 import view.GameView
-import controller.GameController
 
 import scalafx.application.JFXApp
 
