@@ -22,7 +22,7 @@ class SettingsBarView() extends HBox {
   var buttonCheck = new Button("Check"){
     onMouseClicked = (event: MouseEvent) => App.controller.onCheckButtonClick()
   }
-  var buttonSolve= new Button("Solve"){
+  var buttonSolve = new Button("Solve"){
     onMouseClicked = (event: MouseEvent) => App.controller.onSolveButtonClick()
   }
   var buttonExit = new Button("Exit"){
