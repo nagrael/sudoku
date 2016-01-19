@@ -1,14 +1,60 @@
 package controller
 
-
-import model.GameModel
+import model.{SudokuPuzzle, _}
 import view.GameView
-/**
- * Created by Krystian on 2016-01-18.
- */
+
+import scalafx.application.Platform
+import scalafx.scene.input.{KeyCode, KeyEvent}
+
+
 class GameController(val model : GameModel, val view : GameView  ) {
-  def onMouseClick(x: Int, y: Int): Unit = {
-    println(x,y)
+
+  def onKeyPressed(e :KeyEvent){
+    if (model.selectedSquare != -1) {
+      model.sudokuPuzzle.presented(model.selectedSquare) = e.code match {
+        case KeyCode.DIGIT1 => 1
+        case KeyCode.DIGIT2 => 2
+        case KeyCode.DIGIT3 => 3
+        case KeyCode.DIGIT4 => 4
+        case KeyCode.DIGIT5 => 5
+        case KeyCode.DIGIT6 => 6
+        case KeyCode.DIGIT7 => 7
+        case KeyCode.DIGIT8 => 8
+        case KeyCode.DIGIT9 => 9
+        case a => 0
+
+      }
+      view.sudokuView.refreshSquares()
+    }
+
+  }
+  def onMouseClick(x: Int, y: Int): Unit ={
+
+    if(model.sudokuPuzzle.modifable(SudokuPuzzle.getIndex(x, y))){
+      model.selectedSquare = SudokuPuzzle.getIndex(x, y)
+      view.sudokuView.refreshSquares()
+    }
+  }
+
+  def onNewGameButtonClick(): Unit ={
+
+    val difficulty : Difficulty = view.settingsBarView.difficultyChoiceBox.getValue match{
+      case "Easy" => new Easy
+      case "Medium" => new Medium
+      case "Hard" => new Hard
+    }
+    model.newGame(difficulty)
+    view.sudokuView.refreshSquares()
+
+
+  }
+
+  def onCloseButtonClick(): Unit ={
+    Platform.exit();
+    System.exit(0);
+  }
+  def onCheckButtonClick(): Unit ={
+
   }
 
 }

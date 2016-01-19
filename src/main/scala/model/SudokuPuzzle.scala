@@ -7,13 +7,20 @@ case class Easy() extends Difficulty { val revealCount = 40 }
 case class Medium() extends Difficulty { val revealCount = 50 }
 case class Hard() extends Difficulty { val revealCount = 65 }
 
+object SudokuPuzzle{
+  def getIndex(x: Int, y: Int):Int =  x*9 + y
+}
 class SudokuPuzzle(difficulty: Difficulty) {
   private val possible: Set[Int] = Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
   //Generated board
   val puzzle = new Array[Int](81)
+
   //Sudoku to complite
   lazy val presented = puzzle.clone()
+  val modifable = new Array[Boolean](81)
+
+
 
   //Create sudoku from generated board. Max empty fields aare ar difficulty
   def roll(p: Array[Int],max:Int) {
@@ -151,5 +158,9 @@ class SudokuPuzzle(difficulty: Difficulty) {
   }
   solve(0, possibleNumbers(0, puzzle),puzzle)
   roll(presented,difficulty.revealCount)
+
+  for(a <- 0 until 81){
+    modifable(a) = if (presented(a)==0)  true else false
+  }
 
 }

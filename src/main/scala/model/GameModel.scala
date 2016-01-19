@@ -3,7 +3,10 @@ package model
 
 class GameModel  {
 
-  val sudokuPuzzle = new SudokuPuzzle(new Easy);
-
+  var sudokuPuzzle : SudokuPuzzle = new SudokuPuzzle(Easy())
+  var selectedSquare: Int = -1
+  def newGame(diffculty : Difficulty): Unit ={
+    sudokuPuzzle = new SudokuPuzzle(diffculty)
+  }
 
 }
