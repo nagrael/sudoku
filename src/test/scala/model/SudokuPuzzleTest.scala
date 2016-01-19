@@ -22,4 +22,15 @@ class SudokuPuzzleTest extends FlatSpec with Matchers{
 
   }
 
+  "SudokuPuzzle count" should "return true if table has one solution" in{
+    var puzzle = new SudokuPuzzle(new Hard())
+    puzzle.count(puzzle.presented) should be (true)
+    puzzle = new SudokuPuzzle(new Medium())
+    puzzle.count(puzzle.presented) should be (true)
+    puzzle = new SudokuPuzzle(new Easy())
+    puzzle.count(puzzle.presented) should be (true)
+    var riddle = new Array[Int](81)
+    puzzle.count(riddle) should be (false)
+  }
+
 }
