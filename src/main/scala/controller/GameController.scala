@@ -44,6 +44,7 @@ class GameController(val model : GameModel, val view : GameView  ) {
       case "Hard" => new Hard
     }
     model.newGame(difficulty)
+    view.scoreBarView.changeToUnfinished()
     view.sudokuView.refreshSquares()
 
 
@@ -54,6 +55,11 @@ class GameController(val model : GameModel, val view : GameView  ) {
     System.exit(0);
   }
   def onCheckButtonClick(): Unit ={
+    if(SudokuPuzzle.equals(model.sudokuPuzzle.puzzle, model.sudokuPuzzle.presented)){
+      view.scoreBarView.changeToFinished()
+    } else {
+      view.scoreBarView.changeToIncorrect()
+    }
 
   }
 

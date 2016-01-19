@@ -3,12 +3,22 @@ package model
 
 
 abstract class Difficulty { def revealCount: Int }
-case class Easy() extends Difficulty { val revealCount = 40 }
-case class Medium() extends Difficulty { val revealCount = 50 }
-case class Hard() extends Difficulty { val revealCount = 65 }
+case class Easy() extends Difficulty { val revealCount = 10 }
+case class Medium() extends Difficulty { val revealCount = 30 }
+case class Hard() extends Difficulty { val revealCount = 50 }
 
 object SudokuPuzzle{
   def getIndex(x: Int, y: Int):Int =  x*9 + y
+
+  //Check if two arrays are equals
+  def equals(p: Array[Int],q: Array[Int]): Boolean ={
+    var bool = true
+    for(i <- 0 to 80){
+      if(q(i)!=p(i))
+        bool = false
+    }
+    bool
+  }
 }
 class SudokuPuzzle(difficulty: Difficulty) {
   private val possible: Set[Int] = Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -35,15 +45,7 @@ class SudokuPuzzle(difficulty: Difficulty) {
     }
     randomSet(-1, 0, 0, Set()).foreach(index => p(index) = 0)
   }
-  //Check if two arrays are equals
-  def equals(p: Array[Int],q: Array[Int]): Boolean ={
-    var bool = true
-    for(i <- 0 to 80){
-      if(q(i)!=p(i))
-        bool = false
-    }
-    bool
-  }
+
   // Has our sudoku unique solution?
   private def ispossible(s: Set[Int],p: Array[Int] ): Boolean ={
     val tmp = p.clone()

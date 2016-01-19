@@ -32,5 +32,5 @@ class SettingsBarView() extends HBox {
 
 
 
-  children = List(buttonNewGame,difficultyChoiceBox,buttonCheck, buttonExit)
+  children = Seq(buttonNewGame,difficultyChoiceBox,buttonCheck, buttonExit)
 }

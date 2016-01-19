@@ -59,6 +59,7 @@ class SudokuView(val model : GameModel) extends VBox{
     }
   }
   children = Seq(squares)
+  refreshSquares()
 
   def refreshSquares(): Unit ={
     for (x <- squareTexts){
@@ -72,10 +73,7 @@ class SudokuView(val model : GameModel) extends VBox{
       val i = squareField.indexOf(x)
       if( i == model.selectedSquare) {
         x.fill =Color.rgb(255,196,123)
-      } else if(i%9 == model.selectedSquare%9 || i/9 == model.selectedSquare/9 ){
-        x.fill =Color.rgb(255,246,193)
-
-      } else {
+      }  else {
         x.fill = model.sudokuPuzzle.modifable(i) match {
           case true => Color.rgb(231, 245, 250)
           case false => Color.rgb(201, 205, 205)
