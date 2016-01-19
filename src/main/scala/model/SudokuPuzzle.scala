@@ -21,7 +21,7 @@ object SudokuPuzzle{
   }
 }
 class SudokuPuzzle(difficulty: Difficulty) {
-  private val possible: Set[Int] = Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  val possible: Set[Int] = Set(1, 2, 3, 4, 5, 6, 7, 8, 9)
 
   //Generated board
   val puzzle = new Array[Int](81)
@@ -156,7 +156,10 @@ class SudokuPuzzle(difficulty: Difficulty) {
       }
     }
     coutPossible(0, possibleNumbers(0, p))
-    c==1
+    if(c==1)
+      true
+    else
+      false
   }
   solve(0, possibleNumbers(0, puzzle),puzzle)
   roll(presented,difficulty.revealCount)

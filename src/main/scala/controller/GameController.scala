@@ -54,6 +54,10 @@ class GameController(val model : GameModel, val view : GameView  ) {
     Platform.exit();
     System.exit(0);
   }
+  def onSolveButtonClick(): Unit ={
+    model.sudokuPuzzle.solve(0, List.empty[Int] ++ model.sudokuPuzzle.possible, model.sudokuPuzzle.presented )
+    view.sudokuView.refreshSquares()
+  }
   def onCheckButtonClick(): Unit ={
     if(SudokuPuzzle.equals(model.sudokuPuzzle.puzzle, model.sudokuPuzzle.presented)){
       view.scoreBarView.changeToFinished()

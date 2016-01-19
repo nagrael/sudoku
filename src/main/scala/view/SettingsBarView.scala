@@ -22,6 +22,9 @@ class SettingsBarView() extends HBox {
   var buttonCheck = new Button("Check"){
     onMouseClicked = (event: MouseEvent) => App.controller.onCheckButtonClick()
   }
+  var buttonSolve= new Button("Solve"){
+    onMouseClicked = (event: MouseEvent) => App.controller.onSolveButtonClick()
+  }
   var buttonExit = new Button("Exit"){
     onMouseClicked = (event: MouseEvent) => App.controller.onCloseButtonClick()
   }
@@ -32,5 +35,5 @@ class SettingsBarView() extends HBox {
 
 
 
-  children = Seq(buttonNewGame,difficultyChoiceBox,buttonCheck, buttonExit)
+  children = Seq(buttonNewGame,difficultyChoiceBox,buttonSolve ,buttonCheck, buttonExit)
 }
